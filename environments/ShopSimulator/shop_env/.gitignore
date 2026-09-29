@@ -1,0 +1,4 @@
+# Product data and search indexes are downloaded or generated locally.
+data/
+search_engine/indexes*/
+search_engine/resources*/

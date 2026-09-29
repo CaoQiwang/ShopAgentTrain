@@ -1,0 +1,45 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Editor settings and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Runtime output and logs
+/output/
+/environments/ShopSimulator/multi_eval/outputs/
+/environments/ShopSimulator/single_eval/outputs/
+*.log
+*.LOG
+*.LOG.*
+/environments/ShopSimulator/shop_env/web_agent_site/models/logs/
+
+# Local training datasets and model artifacts
+/data/*
+!/data/final_test_100.jsonl
+/environments/ShopSimulator/shop_env/data/
+checkpoints/
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+
+# ShopSimulator generated search resources
+/environments/ShopSimulator/shop_env/search_engine/indexes*/
+/environments/ShopSimulator/shop_env/search_engine/resources*/

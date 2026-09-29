@@ -1,0 +1,45 @@
+env_config:
+  # ShopSimulator pack_api.py
+  base_url: http://127.0.0.1:5000
+  if_persona: false
+
+agent_config:
+  # 必须和 vLLM 的 --served-model-name 完全一致
+  model_name: qwen35-9b-tau2
+  source: idealab
+
+  # vLLM 的 OpenAI-compatible endpoint；按服务器实际映射端口修改
+  model_key: EMPTY
+  base_url: http://127.0.0.1:8041/v1
+
+  # 先跑 5 题冒烟测试；完整官方 eval 改为 1459
+  task_start: 0
+  task_nums: 5
+  output_path: outputs/standard_toolcall
+
+  # 工具调用生成参数
+  temperature: 0.0
+  max_tokens: 512
+  enable_thinking: false
+  tool_choice: required
+  api_timeout: 120
+  max_api_retries: 3
+
+  # 防止无动作、非法动作和上下文无限增长
+  max_steps: 40
+  max_blocked_calls: 3
+  max_context_chars: 60000
+  keep_recent_observations: 4
+
+  system_prompt: |
+    你是一个在 ShopSimulator 中执行购物任务的智能体。
+
+    你必须依据最新一条 observation 行动，不得点击历史页面中的目标。
+
+    决策规则：
+    1. 仅当“搜索功能是否可用: True”时调用 search_products。搜索词应简洁，搜索词由你设计
+    2. 搜索结果页使用 open_product，asin 必须原样来自最新 observation 的“可点击的按钮”。
+    3. 需要补充信息时可查看 Description、Features、Reviews 或 Attributes。
+    4. 使用 select_option 选择用户要求的规格。value 必须逐字取自最新 observation 的“可点击的按钮”。
+    5. 确保至少点击了一个商品的规格，才可调用 buy_now。
+    6. 所有推理都在内部完成，只返回一个结构化工具调用。

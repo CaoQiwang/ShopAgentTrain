@@ -1,0 +1,41 @@
+env_config:
+  base_url: http://127.0.0.1:5000
+  if_persona: false
+
+agent_config:
+  model_name: qwen35-9b-tau2
+
+  # 官方代码虽然使用 OpenAI SDK，但这里只支持 source == idealab
+  source: idealab
+
+  model_key: EMPTY
+  base_url: http://127.0.0.1:8041/v1
+
+  system_prompt: |
+    你正在进行网上购物。
+    我会给你一些关于需要做什么的指示。
+    你必须遵循这些指示。
+    每一轮，我会给你一个观察结果和一组可用的操作，你需要根据当前状态和指示来选择一个操作进行响应。
+    如果搜索功能可用，你可以使用搜索操作。
+    你可以点击可点击按钮列表中的某一个按钮。
+    操作应遵循以下结构：
+    search[关键词]
+    click[值]
+    如果操作无效，则不执行任何操作。
+    搜索中的关键词由你自行决定，但点击操作中的值必须是可用操作列表中的值。
+    一轮只能执行一个动作
+    注意，在点击购买前，确保至少点击了一个商品的规格。
+    请记住，你的搜索关键词应该精心设计。
+    你的响应应使用以下格式：
+
+    Thought: 我认为 ...
+    Action: click[某个值]env_config:
+  # ShopSimulator pack_api.py
+  base_url: http://127.0.0.1:5000
+  if_persona: false
+
+  task_nums: 1000
+
+  output_path: outputs/local_standarda
+
+  
