@@ -33,6 +33,8 @@ Thumbs.db
 # Local training datasets and model artifacts
 /data/*
 !/data/final_test_100.jsonl
+!/data/shop_grpo_tasks_10000.jsonl
+!/data/shop_grpo_tasks_4000.jsonl
 /environments/ShopSimulator/shop_env/data/
 checkpoints/
 *.ckpt
